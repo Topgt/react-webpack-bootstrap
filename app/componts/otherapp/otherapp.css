@@ -1,0 +1,35 @@
+.otherapp{
+  margin: 5px 0;
+  padding: 13px 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+.otherapp ul{
+  margin: 0;
+  padding: 0;
+}
+
+.otherapp li{
+  margin-top: 13px;
+  list-style: none;
+  width: 25%;
+  float: left;
+}
+
+.otherapp a{
+  text-decoration:none;
+  color: #888;
+}
+
+.otherapp img{
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.otherapp img + span{
+  display: block;
+  text-align: center;
+}
