@@ -1,24 +1,32 @@
 import React from 'react';
 let {img} = require('./header.css');
 let $ = require('jquery');
-let data = {
-  data: [
-    'http://localhost:3000/images/swiper/2.jpg',
-    'http://localhost:3000/images/swiper/1.jpg'
-  ]
-};
+// let data = {
+//   data: [
+//     'http://localhost:3000/images/swiper/2.jpg',
+//     'http://localhost:3000/images/swiper/1.jpg'
+//   ]
+// };
 
 let Header = React.createClass({
   getInitialState: function(){
     return {imgUrls: []};
   },
   componentDidMount: function(){
-    if(data.data){
-      if(this.isMounted){
-        this.setState({imgUrls: data.data});
-        this.touch();
-      }
-    }
+    fetch(this.props.url)
+      .then(
+        response=>response.json()
+      )
+      .then(
+        respData=>{
+          if(200 === respData.status){
+            if(this.isMounted){
+              this.setState({imgUrls: respData.data.icon});
+              this.touch();
+            }
+          }
+        }
+      );
   },
   touch : function() {
     var carousel = this.refs.Carousel;

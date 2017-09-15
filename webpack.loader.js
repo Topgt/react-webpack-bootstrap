@@ -7,7 +7,7 @@ module.exports = {
       test: /\.(js|jsx)$/,
       enforce: 'pre',
       exclude: /node_modules/,
-      loaders: ['react-hot-loader', 'babel-loader']
+      loaders: ['react-hot-loader','babel-loader']
     },
     {
       test: /\.css$/,

@@ -1,6 +1,6 @@
 import React from 'react';
 import spike from './spike.css';
-let dataBase = [
+/*let dataBase = [
   {
     icon: 'http://localhost:3000/images/spike/spike1.jpg',
     price: 399,
@@ -17,7 +17,7 @@ let dataBase = [
     sprice: 1099,
     url: 'http://ms.m.jd.com/seckill/seckillList?wareId=2537829'
   }
-];
+];*/
 var formatTime = function(time) {
   var [h,m,s] = [0, 0, 0];
   if (time / 3600 > 1) {
@@ -36,20 +36,34 @@ var formatTime = function(time) {
 };
 let Spike = React.createClass({
   getInitialState: function() {
-    return {stores: [], time:{h:'00',m:'00',s:'00'}};
+    return {data: {store:[]}, icon: [], time:{h:'00',m:'00',s:'00'}};
   },
   componentDidMount: function(){
-    let _this = this;
-    if(dataBase){
-      let time = dataBase.time || 3660;
-      if(this.isMounted){
-        this.setState({stores: dataBase});
-        let siv = setInterval(()=>{
-          _this.setState({time: formatTime(time--)});
-          if(-1 == time) clearInterval(siv);
-        }, 1000);
-      }
-    }
+    fetch(this.props.url)
+      .then(
+        response=>response.json()
+      )
+      .then(
+        respData=>{
+          // console.log(respData);
+          if(200 === respData.status){
+            if(this.isMounted){
+              this.setState({
+                data: respData.data.data,
+                icon: respData.data.icon
+              });
+
+              let times = respData.data.data.times;
+              let setItv = setInterval(
+                ()=>{
+                  this.setState({time: formatTime(times--)});
+                  -1===times && clearInterval(setItv);
+                },1000
+              );
+            }
+          }
+        }
+      );
   },
   render: function() {
     let i =0;
@@ -78,12 +92,12 @@ let Spike = React.createClass({
         <div className={spike.content}>
           <ul>
             {
-              this.state.stores.map(app=>{
+              this.state.data.store.map((app,index)=>{
                 return (
                   <li key={i++}>
                     <a href={app.url}>
                       <div>
-                        <img src={app.icon} />
+                        <img src={this.state.icon[index]} />
                       </div>
                       <p>¥{app.sprice}</p>
                       <p>¥{app.price}</p>

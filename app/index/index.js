@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-// require('bootstrap');
+require('bootstrap');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from '../componts/header/header.jsx';
@@ -8,14 +8,14 @@ import Search from '../componts/search/search.jsx';
 import Otherapp from '../componts/otherapp/otherapp.jsx';
 import Spike from '../componts/spike/spike.jsx';
 import Like from '../componts/like/like.jsx';
-// import Header from '../componts/test.jsx';
+
 ReactDOM.render(
   <div>
     <Search/>
-    <Header/>
-    <Otherapp/>
-    <Spike/>
-    <Like/>
+    <Header url={'http://127.0.0.1:3001/test/swiper'}/>
+    <Otherapp url={'http://127.0.0.1:3001/test/otherapp'}/>
+    <Spike url={'http://127.0.0.1:3001/test/spike'}/>
+    <Like url={'http://127.0.0.1:3001/test/like'}/>
   </div>,
   document.getElementById('example')
 );

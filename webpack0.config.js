@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const babiliPlugin = require('babili-webpack-plugin');
+// const babiliPlugin = require('babili-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -68,7 +68,7 @@ module.exports = {
   },
   plugins: [
     textPlugin,
-    new babiliPlugin(),
+    // new babiliPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),

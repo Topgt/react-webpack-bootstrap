@@ -46,9 +46,28 @@ let dataBase = [{
 }];
 let Like = React.createClass({
   getInitialState: function(){
-    return {source: []};
+    return {source: [],icon: []};
   },
   componentDidMount: function(){
+    fetch(this.props.url)
+      .then(
+        response=>response.json()
+      )
+      .then(
+        respData=>{
+          if(200 === respData.status){
+            if(this.isMounted){
+              this.setState({
+                source: respData.data.data,
+                icon: respData.data.icon
+              });
+            }
+          }
+        }
+      );
+
+
+
     if(dataBase){
       if(this.isMounted){
         this.setState({source: dataBase});
@@ -62,11 +81,11 @@ let Like = React.createClass({
         <p>猜你喜欢</p>
         <ul>
           {
-            this.state.source.map((data)=>{
+            this.state.source.map((data,index)=>{
               return (
                 <li className={like.item} key={k++}>
                   <a>
-                    <img src={data.icon} />
+                    <img src={this.state.icon[index]} />
                     <span>{data.desc}</span>
                     <div className={like.price}>
                       <div>

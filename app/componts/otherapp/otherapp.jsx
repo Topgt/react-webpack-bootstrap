@@ -39,16 +39,22 @@ let dataBase = {
 };
 let Otherapp = React.createClass({
   getInitialState: function(){
-    return {apps: []};
+    return {apps: [],icon:[]};
   },
   componentDidMount: function(){
-    if(200 === dataBase.state){
-      if(this.isMounted){
-        this.setState({
-          apps: dataBase.data
-        });
-      }
-    }
+    fetch(this.props.url)
+      .then(
+        repsonse=>repsonse.json()
+      )
+      .then(
+        respData=>{
+          if(200 === respData.status){
+            if(this.isMounted){
+              this.setState({apps: respData.data.data, icon:respData.data.icon});
+            }
+          }
+        }
+      );
   },
   render: function(){
     let i=0;
@@ -56,11 +62,11 @@ let Otherapp = React.createClass({
       <div id="otherapp" className={otherapp}>
         <ul>
           {
-            this.state.apps.map(app=>{
+            this.state.apps.map((app,index)=>{
               return (
                 <li key={i++}>
                   <a href={app.url}>
-                    <img src={app.icon} />
+                    <img src={this.state.icon[index]} />
                     <span>{app.title}</span>
                   </a>
                 </li>
