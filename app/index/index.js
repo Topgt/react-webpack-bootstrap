@@ -12,10 +12,10 @@ import Like from '../componts/like/like.jsx';
 ReactDOM.render(
   <div>
     <Search/>
-    <Header url={'http://127.0.0.1:3001/test/swiper'}/>
-    <Otherapp url={'http://127.0.0.1:3001/test/otherapp'}/>
-    <Spike url={'http://127.0.0.1:3001/test/spike'}/>
-    <Like url={'http://127.0.0.1:3001/test/like'}/>
+    <Header url={'http://localhost:3000/test/swiper'}/>
+    <Otherapp url={'http://localhost:3000/test/otherapp'}/>
+    <Spike url={'http://localhost:3000/test/spike'}/>
+    <Like url={'http://localhost:3000/test/like'}/>
   </div>,
   document.getElementById('example')
 );

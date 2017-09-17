@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  bulid: path.join(__dirname, 'bulid')
+  build: path.join(__dirname, '/server/build')
 };
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
     // vendor2: ['boostrap']
   },
   output:{
-    path: PATHS.bulid,
+    path: PATHS.build,
     filename: '[name].js'
   },
   devServer:{
