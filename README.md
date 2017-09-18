@@ -30,7 +30,7 @@
 	- $ docker build -t testreact .
 	- > testreact是名字随便起，别忘了后面的`.`
 - 运行docker镜像生成docker容器
-	- $ docker run -d -p 3000:3001 testreact
-	- > 端口不要改就是本机3000端口对应容器3001端口，具体原因是因为端口写死了。改了就运行不了。
+	- $ docker run -d -p 3000:3000 testreact
+	- > 端口不要改就是本机3000端口对应容器3000端口，具体原因是因为端口写死了。改了就运行不了。
 - 查看效果
 	浏览起访问 localhost:3000
